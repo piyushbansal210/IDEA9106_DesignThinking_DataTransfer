@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CrossBorder Transfer Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f6f7fb;--panel:#ffffff;--panel2:#f8f9fc;--line:#e4e7ef;--line2:#d5dae5;
+  --txt:#141a2b;--muted:#5f6b82;--faint:#8a94a8;
+  --accent:#4f46e5;--accent-hover:#4338ca;--accent-soft:#eef0ff;
+  --green:#047857;--green-bg:#ecfdf5;--green-line:#a7f3d0;
+  --yellow:#92580a;--yellow-bg:#fffbeb;--yellow-line:#fde68a;
+  --red:#b42335;--red-bg:#fff1f2;--red-line:#fecdd3;
+  --shadow:0 1px 2px rgba(20,26,43,.04),0 4px 16px rgba(20,26,43,.05);
+  --radius:14px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);background-image:radial-gradient(900px 400px at 0% -10%,#e9ebff 0,transparent 70%),radial-gradient(700px 360px at 100% -10%,#e3f4f1 0,transparent 70%);background-repeat:no-repeat;color:var(--txt);font:14.5px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+
+/* Header */
+header{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:14px 28px;background:rgba(255,255,255,.82);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16.5px;letter-spacing:-.01em}
+.brand div span{color:var(--accent)}
+.logo{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,#6366f1,#14b8a6);color:#fff;box-shadow:0 2px 8px rgba(79,70,229,.3)}
+.logo svg{width:17px;height:17px}
+
+/* Layout */
+main{max-width:1240px;margin:auto;padding:36px 28px 24px}
+.hero{margin-bottom:26px}
+.eyebrow{display:inline-block;font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:999px;margin-bottom:12px}
+h1{font-size:30px;line-height:1.2;letter-spacing:-.02em;margin:0 0 8px;font-weight:700}
+.hero .muted{font-size:15px;max-width:720px}
+h2{display:flex;align-items:center;gap:10px;font-size:15.5px;font-weight:600;letter-spacing:-.005em;margin:0 0 16px}
+.step{flex:0 0 auto;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px;min-width:0;box-shadow:var(--shadow)}
+.wide{grid-column:1/-1}
+.muted{color:var(--muted);font-size:13px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row>*{flex:1}
+
+/* Forms */
+label{display:block;font-size:12.5px;font-weight:500;color:var(--muted);margin:14px 0 6px}
+input,select,textarea{width:100%;background:#fff;border:1px solid var(--line2);border-radius:10px;color:var(--txt);padding:10px 12px;font:inherit;transition:border-color .15s,box-shadow .15s}
+input::placeholder,textarea::placeholder{color:#a3abbc}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,70,229,.14)}
+select{appearance:none;-webkit-appearance:none;padding-right:34px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235f6b82' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+textarea{min-height:96px;resize:vertical}
+input[type=file]{padding:8px;background:var(--panel2);border-style:dashed}
+input[type=checkbox]{width:16px;height:16px;margin:0;accent-color:var(--accent);flex:0 0 auto}
+button{border:0;border-radius:10px;padding:11px 16px;font:inherit;font-weight:600;cursor:pointer;background:var(--accent);color:#fff;box-shadow:0 1px 2px rgba(79,70,229,.25);transition:background .15s,transform .05s,box-shadow .15s}
+button:hover:not(:disabled){background:var(--accent-hover);box-shadow:0 4px 12px rgba(79,70,229,.25)}
+button:active:not(:disabled){transform:translateY(1px)}
+button.secondary{background:#fff;color:var(--txt);border:1px solid var(--line2);box-shadow:none}
+button.secondary:hover:not(:disabled){background:var(--panel2);box-shadow:none}
+button:disabled{opacity:.45;cursor:not-allowed}
+button:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(79,70,229,.3)}
+.checkbox{display:flex;gap:10px;align-items:center;font-size:13.5px;color:var(--txt);margin:10px 0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel2)}
+.checkbox label{margin:0;font-size:13.5px;color:var(--txt);cursor:pointer;flex:1}
+
+/* Status + notices */
+.status{padding:10px 13px;border-radius:10px;background:var(--panel2);border:1px solid var(--line);font-size:13px;margin-top:12px;color:var(--muted)}
+.ok{color:var(--green);border-color:var(--green-line);background:var(--green-bg)}
+.warn{color:var(--yellow);border-color:var(--yellow-line);background:var(--yellow-bg)}
+.err{color:var(--red);border-color:var(--red-line);background:var(--red-bg)}
+.notice{padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);font-size:12.5px;color:var(--muted);margin:14px 0 0}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:5px 11px;border-radius:999px;background:#fff;border:1px solid var(--line2);color:var(--muted);font-size:12px;font-weight:500;white-space:nowrap}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:#c2c8d4}
+.pill.live{color:var(--green);border-color:var(--green-line);background:var(--green-bg)}
+.pill.live::before{background:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,.2)}
+
+/* Route */
+.region{display:flex;gap:12px;align-items:center;padding:12px 14px;background:var(--panel2);border:1px solid var(--line);border-radius:12px}
+.flag{flex:0 0 auto;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:12.5px;font-weight:700;letter-spacing:.04em;background:var(--accent-soft);color:var(--accent);border:1px solid #dcdffb}
+.flag.peer{background:#e8f6f3;color:#0f766e;border-color:#c5e9e2}
+.connector{display:flex;justify-content:center;padding:6px 0;color:var(--faint)}
+.connector svg{width:20px;height:20px}
+
+/* Metrics + data */
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.metric{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel2)}
+.metric b{display:block;font-size:24px;font-weight:700;letter-spacing:-.02em}
+.metric span{font-size:11.5px;color:var(--muted)}
+.mono{font:11.5px/1.6 "JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-all}
+#cipherPreview{padding:11px 13px;border-radius:10px;background:#f3f4f8;border:1px solid var(--line);color:#3b4458;max-height:150px;overflow:auto}
+#received pre{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px;margin:10px 0 0;color:var(--txt)}
+.tablewrap{overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{text-align:left;padding:9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted)}
+.log{max-height:280px;overflow:auto;border:1px solid var(--line);border-radius:12px;padding:0 14px}
+.log>.muted{padding:14px 0}
+.logitem{border-bottom:1px solid var(--line);padding:10px 0;font-size:13px}
+.logitem:last-child{border-bottom:0}
+.logitem b{font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--accent);background:var(--accent-soft);padding:2px 7px;border-radius:6px;margin-right:4px}
+.logitem .muted{font-size:11.5px;margin-top:3px}
+.filepreview{max-width:100%;max-height:220px;margin-top:12px;border-radius:10px;border:1px solid var(--line)}
+
+/* Concepts + footer */
+.concept h2 .flag{width:30px;height:30px;font-size:11px;border-radius:8px}
+.concept p{margin:0;line-height:1.65}
+.banner{display:flex;gap:12px;align-items:flex-start}
+.banner svg{flex:0 0 auto;width:18px;height:18px;margin-top:1px}
+.hidden{display:none!important}
+footer{text-align:center;padding:30px 20px 36px;color:var(--faint);font-size:12px}
+
+/* Login */
+.login{max-width:420px;margin:10vh auto 0;padding:32px}
+.login .logo{width:42px;height:42px;border-radius:12px;margin-bottom:18px}
+.login .logo svg{width:22px;height:22px}
+.login h1{font-size:24px}
+
+@media(max-width:950px){.grid{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}}
+@media(max-width:650px){header{padding:12px 16px}.grid,.two{grid-template-columns:1fr}.wide{grid-column:auto}main{padding:24px 16px}h1{font-size:24px}.login{margin:6vh 16px 0;padding:24px}}
+</style>
+</head>
+<body>
+<header><div class="brand"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h11l-3-3"/><path d="M17 17H6l3 3"/></svg></span><div>CrossBorder <span>Transfer Lab</span></div></div><div class="row" style="flex:0 0 auto"><span class="pill" id="connectionPill">Disconnected</span><button class="secondary hidden" id="logout">Logout</button></div></header>
+<section id="login" class="card login"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><h1>Secure browser-to-browser transfer</h1><p class="muted">Demo login gates the interface only. It is not production authentication.</p><div class="notice">Demo username: <b>admin</b> · Password: <b>demo123</b></div><label>Username</label><input id="username" value="admin" autocomplete="username"><label>Password</label><input id="password" type="password" value="demo123" autocomplete="current-password"><button id="loginBtn" style="width:100%;margin-top:20px">Sign in</button><div id="loginError" class="status err hidden">Incorrect demo credentials.</div></section>
+<main id="app" class="hidden"><div class="hero"><span class="eyebrow">Encrypted relay demo</span><h1>Cross-border data transfer</h1><p class="muted">Connect two browsers to the same room. This relay forwards encrypted envelopes; it never receives the encryption key or plaintext.</p></div>
+<div class="grid">
+<section class="card"><h2><span class="step">1</span>Join a shared room</h2><label>Room code (same in both browsers)</label><input id="room" value="privacy-demo-01" maxlength="80"><label>This browser's demonstration region</label><select id="region"><option value="AU">Australia</option><option value="EU">Europe / EEA</option></select><label>Relay server URL</label><input id="serverUrl" placeholder="ws://localhost:3000" value=""><button id="connectBtn" style="width:100%;margin-top:16px">Connect to room</button><div id="socketStatus" class="status warn">Not connected.</div><div class="notice">For two devices, host this app on a reachable server and use its secure WebSocket URL (wss://). localhost only works on the same computer.</div></section>
+<section class="card"><h2><span class="step">2</span>Transfer route</h2><div class="region"><span class="flag" id="myFlag">AU</span><div><b id="myRegion">Australia</b><div class="muted">This browser</div></div></div><div class="connector"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg></div><div class="region"><span class="flag peer" id="peerFlag">?</span><div><b id="peerLabel">Waiting for peer</b><div class="muted" id="peerStatus">Open the same room in the other browser</div></div></div><div id="peerNotice" class="status warn">No second browser detected yet.</div><div class="notice">The region selector is a demonstration label. It does not verify VPN country or determine which law applies.</div></section>
+<section class="card"><h2><span class="step">3</span>Privacy policy demo</h2><label>Transfer policy scenario</label><select id="policy"><option value="review">Cross-border transfer: require review</option><option value="safeguards">Safeguards documented (demo)</option><option value="minimise">Minimise selected fields</option><option value="block">Block transfer for demonstration</option></select><div style="margin-top:14px"><div class="checkbox"><input id="maskEmail" type="checkbox"><label for="maskEmail">Mask email before encryption</label></div><div class="checkbox"><input id="minPhone" type="checkbox" checked><label for="minPhone">Minimise phone number before encryption</label></div><div class="checkbox"><input id="consent" type="checkbox"><label for="consent">Record a simulated consent flag</label></div></div><div class="notice">Educational controls only; not a legal decision or compliance certification.</div></section>
+<section class="card"><h2><span class="step">4</span>Compose message</h2><label>Message type</label><select id="kind"><option value="text">Text / personal details</option><option value="file">Image or file</option></select><div id="textFields"><label>Full name</label><input id="fullName" placeholder="Example: Alex Morgan"><label>Email</label><input id="email" placeholder="alex@example.com"><label>Phone</label><input id="phone" placeholder="+61 400 000 000"><label>Address</label><input id="address" placeholder="Example address"><label>Message</label><textarea id="message" placeholder="Type a message to send to the other browser"></textarea></div><div id="fileFields" class="hidden"><label>Choose file (up to 8 MiB)</label><input type="file" id="fileInput" accept="image/*,.pdf,.txt,.csv,.doc,.docx"><div id="fileInfo" class="muted" style="margin-top:8px">No file selected.</div><img id="preview" class="filepreview hidden" alt="Selected image preview"></div><button id="sendBtn" style="width:100%;margin-top:16px" disabled>Encrypt &amp; send to other browser</button><div id="sendStatus" class="status">Connect and wait for the other browser before sending.</div></section>
+<section class="card"><h2><span class="step">5</span>Received data</h2><div class="metrics"><div class="metric"><b id="sentCount">0</b><span>Sent</span></div><div class="metric"><b id="receivedCount">0</b><span>Received</span></div><div class="metric"><b id="minCount">0</b><span>Fields minimised</span></div></div><div id="received" class="notice" style="margin-top:16px">No data received yet.</div><div id="receivedFile"></div><button id="downloadBtn" class="secondary hidden" style="margin-top:12px;width:100%">Download received file</button></section>
+<section class="card"><h2><span class="step">6</span>Encryption details</h2><div id="cryptoDetails" class="notice" style="margin-top:0">No transfer yet. A fresh AES-GCM key and nonce will be generated for each message. The sender shares the key with the receiver using a demo room key agreement.</div><label>Latest encrypted payload (sample)</label><div id="cipherPreview" class="mono">—</div><div class="notice">This demo derives a shared key from a room code using PBKDF2 for ease of setup. Do not use this key exchange for real confidential data; production needs authenticated identity and a secure key-management design.</div></section>
+<section class="card wide"><h2><span class="step">7</span>Audit trail</h2><div id="audit" class="log"><div class="muted">No events yet.</div></div><div class="row" style="margin-top:14px;justify-content:flex-end"><button class="secondary" id="exportAudit" style="flex:0 0 auto">Export audit JSON</button><button class="secondary" id="clearAudit" style="flex:0 0 auto">Clear local audit</button></div></section>
+</div>
+<div class="two" style="margin-top:18px"><section class="card concept"><h2><span class="flag">AU</span>Australia — concepts</h2><p class="muted"><b>APP 6:</b> use and disclosure. <b>APP 8:</b> certain cross-border disclosures. <b>APP 11:</b> security safeguards. Applicability and obligations depend on the entity and circumstances.</p></section><section class="card concept"><h2><span class="flag">EU</span>GDPR — concepts</h2><p class="muted"><b>Data minimisation:</b> limit data to what is necessary. <b>Security:</b> appropriate technical and organisational measures. <b>International transfers:</b> where Chapter V applies, an appropriate transfer mechanism may be needed.</p></section></div>
+<div class="status warn banner" style="margin-top:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><div>Security note: the browser-to-browser transfer is real through the relay, but this is a demo. The room code is not secure identity authentication, the relay has no durable audit storage, and VPN location is not proof of legal jurisdiction. Use synthetic data only.</div></div>
+</main><footer>CrossBorder Transfer Lab · Demo only · Do not transfer real personal or confidential information.</footer>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+let ws=null, joined=false, peerOnline=false, peerRegion='unknown', sent=0, received=0, minimised=0, audit=[], latestReceivedFile=null;
+let roomSecretBytes=null;
+function log(type,message){audit.unshift({time:new Date().toISOString(),type,message});renderAudit();}
+function renderAudit(){ $('audit').innerHTML=audit.length?audit.map(x=>`<div class="logitem"><b>${esc(x.type)}</b> · ${esc(x.message)}<div class="muted">${esc(new Date(x.time).toLocaleString())}</div></div>`).join(''):'<div class="muted">No events yet.</div>'; }
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function regionName(r){return r==='AU'?'Australia':r==='EU'?'Europe / EEA':'Unknown region';}
+function setStatus(id,text,kind='warn'){ $(id).className='status '+kind; $(id).textContent=text; }
+$('loginBtn').onclick=()=>{if($('username').value==='admin'&&$('password').value==='demo123'){$('login').classList.add('hidden');$('app').classList.remove('hidden');$('logout').classList.remove('hidden');log('LOGIN','Demo user signed in locally.');}else $('loginError').classList.remove('hidden');};
+$('password').addEventListener('keydown',e=>{if(e.key==='Enter')$('loginBtn').click();});
+$('logout').onclick=()=>{if(ws)ws.close();location.reload();};
+$('region').onchange=()=>{const r=$('region').value;$('myRegion').textContent=regionName(r);$('myFlag').textContent=r;if(joined&&ws?.readyState===WebSocket.OPEN){ws.send(JSON.stringify({type:'presence',status:'region changed'}));log('REGION',`Local demonstration region set to ${regionName(r)}.`);}};
+$('kind').onchange=()=>{const file=$('kind').value==='file';$('textFields').classList.toggle('hidden',file);$('fileFields').classList.toggle('hidden',!file);};
+$('fileInput').onchange=()=>{const f=$('fileInput').files[0];$('fileInfo').textContent=f?`${f.name} · ${f.type||'unknown type'} · ${f.size.toLocaleString()} bytes`:'No file selected.';$('preview').classList.add('hidden');if(f&&f.type.startsWith('image/')){const url=URL.createObjectURL(f);$('preview').src=url;$('preview').classList.remove('hidden');}};
+async function deriveRoomKey(room){const enc=new TextEncoder();const material=await crypto.subtle.importKey('raw',enc.encode(room),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt:enc.encode('CrossBorder-Lab-demo-v1'),iterations:250000,hash:'SHA-256'},material,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
+function b64(bytes){let s='';const a=new Uint8Array(bytes);for(let i=0;i<a.length;i+=0x8000)s+=String.fromCharCode(...a.subarray(i,i+0x8000));return btoa(s);}
+function un64(s){const b=atob(s),a=new Uint8Array(b.length);for(let i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a;}
+async function encryptBytes(bytes,mime,name,kind){const key=await deriveRoomKey($('room').value.trim());const iv=crypto.getRandomValues(new Uint8Array(12));const cipher=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,bytes);return {version:1,algorithm:'AES-256-GCM',iv:b64(iv),ciphertext:b64(cipher),mime:mime||'application/octet-stream',name:name||'payload.bin',kind};}
+async function decryptEnvelope(e){const key=await deriveRoomKey($('room').value.trim());return new Uint8Array(await crypto.subtle.decrypt({name:'AES-GCM',iv:un64(e.iv)},key,un64(e.ciphertext)));}
+$('connectBtn').onclick=()=>{if(ws)ws.close();const room=$('room').value.trim();if(!/^[a-zA-Z0-9_-]{3,80}$/.test(room)){setStatus('socketStatus','Room code must be 3–80 letters, numbers, _ or -.','err');return;}let url=$('serverUrl').value.trim();if(!url)url=(location.protocol==='https:'?'wss://':'ws://')+location.host;if(url.startsWith('http://'))url='ws://'+url.slice(7);if(url.startsWith('https://'))url='wss://'+url.slice(8);try{ws=new WebSocket(url);}catch(e){setStatus('socketStatus','Invalid WebSocket URL.','err');return;}setStatus('socketStatus','Connecting to relay…');ws.onopen=()=>{ws.send(JSON.stringify({type:'join',room,region:$('region').value}));};ws.onmessage=async ev=>{let m;try{m=JSON.parse(ev.data)}catch{return}if(m.type==='connected'){log('RELAY','Connected to relay server.');}else if(m.type==='joined'){joined=true;$('connectionPill').textContent='Connected · '+regionName(m.region);$('connectionPill').classList.add('live');setStatus('socketStatus',`Connected to room ${m.room}. Waiting for peer…`,'ok');updateSend();log('JOIN',`Joined room ${m.room} as ${regionName(m.region)}.`);}else if(m.type==='peer-joined'||m.type==='peer-present'){peerOnline=true;peerRegion=m.region;updatePeer();updateSend();log('PEER',`Another browser joined (${regionName(m.region)}).`);}else if(m.type==='peer-left'){peerOnline=false;updatePeer();updateSend();log('PEER','The other browser disconnected.');}else if(m.type==='peer-presence'){peerRegion=m.region;updatePeer();}else if(m.type==='transfer-sent'){sent++;$('sentCount').textContent=sent;setStatus('sendStatus',`Encrypted payload relayed to ${m.recipientCount} browser(s).`,'ok');log('SENT',`Encrypted payload ${m.transferId} relayed; server did not decrypt it.`);}else if(m.type==='incoming-transfer'){await receiveTransfer(m);}else if(m.type==='error'){setStatus('socketStatus',m.message,'err');setStatus('sendStatus',m.message,'err');log('ERROR',m.message);}};ws.onerror=()=>{setStatus('socketStatus','Connection failed. Check relay URL/server and HTTPS/WSS requirements.','err');};ws.onclose=()=>{joined=false;peerOnline=false;$('connectionPill').textContent='Disconnected';$('connectionPill').classList.remove('live');setStatus('socketStatus','Disconnected from relay.','warn');updatePeer();updateSend();};};
+function updatePeer(){$('peerFlag').textContent=peerOnline&&(peerRegion==='AU'||peerRegion==='EU')?peerRegion:'?';$('peerLabel').textContent=peerOnline?regionName(peerRegion):'Waiting for peer';$('peerStatus').textContent=peerOnline?'Second browser connected':'Open the same room in the other browser';$('peerNotice').className='status '+(peerOnline?'ok':'warn');$('peerNotice').textContent=peerOnline?`Peer connected · demonstration region: ${regionName(peerRegion)}`:'No second browser detected yet.';}
+function updateSend(){$('sendBtn').disabled=!(joined&&peerOnline&&ws&&ws.readyState===WebSocket.OPEN);}
+$('sendBtn').onclick=async()=>{try{if(!joined||!peerOnline||ws?.readyState!==WebSocket.OPEN)throw new Error('Connect both browsers to the same room first.');const policy=$('policy').value;if(policy==='block'){setStatus('sendStatus','Blocked by the selected demonstration policy. No payload sent.','err');log('BLOCK','Transfer blocked by demo policy.');return;}let payload,kind,mime='application/json',name='message.json';let redactedNow=0;
+if($('kind').value==='text'){const data={fullName:$('fullName').value,email:$('email').value,phone:$('phone').value,address:$('address').value,message:$('message').value,consentRecorded:$('consent').checked};if($('maskEmail').checked&&data.email){const p=data.email.split('@');data.email=p.length===2?(p[0].slice(0,1)+'***@'+p[1]):'***';redactedNow++;}if($('minPhone').checked&&data.phone){data.phone=data.phone.length>6?data.phone.slice(0,3)+'••••'+data.phone.slice(-2):'[minimised]';redactedNow++;}if(policy==='minimise'){if(data.address){data.address='[removed by minimisation policy]';redactedNow++;}if(data.phone){data.phone='[removed by minimisation policy]';redactedNow++;}}payload=new TextEncoder().encode(JSON.stringify(data));kind='text';}
+else{const f=$('fileInput').files[0];if(!f)throw new Error('Choose a file first.');if(f.size>8*1024*1024)throw new Error('File exceeds the 8 MiB demo limit.');const bytes=new Uint8Array(await f.arrayBuffer());const meta=new TextEncoder().encode(JSON.stringify({name:f.name,type:f.type||'application/octet-stream',size:f.size}));const header=new Uint8Array(4+meta.length+bytes.length);new DataView(header.buffer).setUint32(0,meta.length);header.set(meta,4);header.set(bytes,4+meta.length);payload=header;kind='file';mime=f.type||'application/octet-stream';name=f.name;}
+const env=await encryptBytes(payload,mime,name,kind);$('cryptoDetails').innerHTML=`<b>${esc(env.algorithm)}</b><br>Nonce / IV: <span class="mono">${esc(env.iv)}</span><br>Plaintext size: ${payload.byteLength.toLocaleString()} bytes<br>Ciphertext size: ${un64(env.ciphertext).length.toLocaleString()} bytes<br><span class="muted">Key derived locally from the shared room code; it is not sent to the relay.</span>`;$('cipherPreview').textContent=env.ciphertext.slice(0,420)+(env.ciphertext.length>420?'…':'');minimised+=redactedNow;$('minCount').textContent=minimised;const transferId=crypto.randomUUID();ws.send(JSON.stringify({type:'transfer',transferId,envelope:env}));setStatus('sendStatus','Encrypting and sending…','warn');log('ENCRYPT',`Payload encrypted with ${env.algorithm}; ${redactedNow} field(s) minimised.`);if(policy==='review')log('POLICY REVIEW','Demo policy flags this cross-border transfer for review; this does not automatically block the transport.');else if(policy==='safeguards')log('POLICY','Safeguards marked as documented in this demonstration only.');}catch(e){setStatus('sendStatus',e.message||'Transfer failed.','err');}};
+async function receiveTransfer(m){try{const bytes=await decryptEnvelope(m.envelope);received++;$('receivedCount').textContent=received;const e=m.envelope;if(e.kind==='file'){const view=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength);const metaLen=view.getUint32(0);const meta=JSON.parse(new TextDecoder().decode(bytes.slice(4,4+metaLen)));const fileBytes=bytes.slice(4+metaLen);latestReceivedFile={bytes:fileBytes,mime:meta.type,name:meta.name};$('received').innerHTML=`<b>Received file successfully</b><br>${esc(meta.name)}<br>${esc(meta.type)} · ${fileBytes.length.toLocaleString()} bytes<br><span class="muted">From ${esc(regionName(m.fromRegion))} · ${esc(new Date(m.sentAt).toLocaleString())}</span>`;$('downloadBtn').classList.remove('hidden');$('receivedFile').innerHTML='';if(meta.type.startsWith('image/')){const img=document.createElement('img');img.className='filepreview';img.alt='Received image';img.src=URL.createObjectURL(new Blob([fileBytes],{type:meta.type}));$('receivedFile').appendChild(img);}}else{const data=JSON.parse(new TextDecoder().decode(bytes));$('received').innerHTML=`<b>Message decrypted successfully</b><div class="muted">From ${esc(regionName(m.fromRegion))} · ${esc(new Date(m.sentAt).toLocaleString())}</div><pre class="mono" style="white-space:pre-wrap">${esc(JSON.stringify(data,null,2))}</pre>`;$('downloadBtn').classList.add('hidden');latestReceivedFile=null;}$('cryptoDetails').innerHTML=`<b>Receiver decrypted the payload</b><br>Algorithm: ${esc(e.algorithm)}<br>Encrypted payload received: ${un64(e.ciphertext).length.toLocaleString()} bytes<br><span class="muted">Successful decryption confirms both browsers used the same room-derived key.</span>`;$('cipherPreview').textContent=e.ciphertext.slice(0,420)+(e.ciphertext.length>420?'…':'');log('RECEIVED',`Decrypted transfer ${m.transferId} from ${regionName(m.fromRegion)}.`);}catch(e){$('received').textContent='Received encrypted packet, but decryption failed. Check that both browsers use the exact same room code.';log('DECRYPT ERROR',e.message||'Decryption failed.');}}
+$('downloadBtn').onclick=()=>{if(!latestReceivedFile)return;const url=URL.createObjectURL(new Blob([latestReceivedFile.bytes],{type:latestReceivedFile.mime}));const a=document.createElement('a');a.href=url;a.download=latestReceivedFile.name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+$('exportAudit').onclick=()=>{const blob=new Blob([JSON.stringify({app:'CrossBorder Transfer Lab',exportedAt:new Date().toISOString(),events:audit},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='crossborder-audit.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+$('clearAudit').onclick=()=>{audit=[];renderAudit();};
+</script>
+</body></html>

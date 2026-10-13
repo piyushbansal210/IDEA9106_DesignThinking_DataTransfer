@@ -24,4 +24,4 @@ A two-browser demonstration app. The Node.js server relays encrypted messages ov
 - Audit log lives in the browser memory and can be edited by the user; it is not a tamper-proof audit log.
 - “Region” is a user-selected label; VPN geography is not verified, and a VPN location does not determine which laws apply.
 - The privacy policy selector is educational and is not legal advice or a compliance engine.
-# IDEA9106_DesignThinking_DataTransfer
+

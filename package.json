@@ -1,0 +1,9 @@
+{
+  "name": "crossborder-transfer-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Two-browser cross-border data transfer demo with WebSocket relay and AES-GCM encryption",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "dependencies": { "express": "^4.21.2", "ws": "^8.18.0" }
+}
